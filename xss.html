@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xss-demo</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <ol id="ureol">
+    </ol>
+    <script>
+   $.get('./comments.json').then(function(response){
+       let comments = response
+       var $ol = $('#ureol')
+       comments.forEach(function(item){
+        var $li = $(`
+         <li>评论者：${item.user}
+         <img src="${item.avatar}" alt=""><!--图片利用双引号拼接src，实现代码注入-->    
+         <p>评论内容：${item.content.replace(/</,'&lt').replace(/</,'&gt')}</p>
+         </li>
+         `)    
+         $li.appendTo($ol)
+       })
+     })
+   </script>
+   <!--var $li = $('<li />')
+   $li.text(item.user)
+   var $p = $('<p />')
+   $p.text(item.content)
+   $p.appendTo($li)
+   $li.appendTo($ol)//方法一、text不管输入什么都转换为文本，不会运行script代码
+   var $li = $(`
+   <li>评论者：${item.user}      
+   <p>评论内容：${item.content.replace(/</,'&lt').replace(/</,'&gt')}</p>
+   </li>
+   `)//方法二、把所有的<与>转义.有个专门转义的仓库：escape-HTML-->
+</body>
+</html>

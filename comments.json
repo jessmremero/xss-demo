@@ -1,0 +1,5 @@
+[
+ {"user":"frank","content":"hi","avatar":"http://img2.imgtn.bdimg.com/it/u=1343212205,678582139&fm=214&gp=0.jpg"},
+ {"user":"jack","content":"how are you?","avatar":"\" width=100 height=100 onclick=\"alert(1)\""},
+ {"user":"frank","content":"<script>alert('stupid')</script>","avatar":"http://img2.imgtn.bdimg.com/it/u=1343212205,678582139&fm=214&gp=0.jpg"}
+]
